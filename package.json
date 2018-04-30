@@ -4,6 +4,10 @@
   "description": "An ESLint plugin to deprecate import statements",
   "keywords": ["eslint", "eslintplugin", "eslint-plugin"],
   "author": "findmypast",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/findmypast-oss/eslint-plugin-deprecate-import"
+  },
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha tests --recursive"

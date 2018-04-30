@@ -19,17 +19,17 @@ var ruleTester = new RuleTester();
 ruleTester.run("module", rule, {
   valid: [
     {
-      code: "import * as supported from 'supported-module'",
+      code: "import * as foo from 'supported-module'",
       options: [{ name: "deprecated-module" }],
       parser: "babel-eslint"
     },
     {
-      code: "import supported from 'supported-module'",
+      code: "import foo from 'supported-module'",
       options: [{ name: "deprecated-module" }],
       parser: "babel-eslint"
     },
     {
-      code: "import { supported } from 'supported-module'",
+      code: "import { foo } from 'node-modules/deprecated-module'",
       options: [{ name: "deprecated-module" }],
       parser: "babel-eslint"
     }
@@ -37,7 +37,7 @@ ruleTester.run("module", rule, {
 
   invalid: [
     {
-      code: "import * as deprecated from 'deprecated-module'",
+      code: "import * as foo from 'deprecated-module'",
       options: [{ name: "deprecated-module", use: "supported-module" }],
       errors: [
         {
@@ -49,7 +49,7 @@ ruleTester.run("module", rule, {
       parser: "babel-eslint"
     },
     {
-      code: "import deprecated from 'deprecated-module'",
+      code: "import foo from 'deprecated-module'",
       options: [{ name: "deprecated-module" }],
       errors: [
         {
@@ -60,7 +60,7 @@ ruleTester.run("module", rule, {
       parser: "babel-eslint"
     },
     {
-      code: "import { deprecated } from 'deprecated-module'",
+      code: "import { foo } from 'deprecated-module'",
       options: [{ name: "deprecated-module", use: "supported-module" }],
       errors: [
         {

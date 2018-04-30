@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-deprecate-import",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "An ESLint plugin to deprecate import statements",
   "keywords": ["eslint", "eslintplugin", "eslint-plugin"],
   "author": "findmypast",

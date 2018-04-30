@@ -1,19 +1,5 @@
-/**
- * @fileoverview Deprecates a module import
- * @author findmypast
- */
-"use strict";
-
-//------------------------------------------------------------------------------
-// Requirements
-//------------------------------------------------------------------------------
-
 var rule = require("../../../lib/rules/module"),
   RuleTester = require("eslint").RuleTester;
-
-//------------------------------------------------------------------------------
-// Tests
-//------------------------------------------------------------------------------
 
 var ruleTester = new RuleTester();
 ruleTester.run("module", rule, {

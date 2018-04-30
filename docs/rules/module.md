@@ -16,6 +16,9 @@ This rule aims to deprecate module imports.
         name: 'deprecated-module',
         use: 'supported-module',
       },
+      {
+        name: 'another-deprecated-module'
+      },
     ]
 }
 ```
@@ -37,14 +40,20 @@ import * as foo from "deprecated-module";
 
 import foo from "deprecated-module";
 
-import { foo } from "deprecated-module";
+import { foo } from "another-deprecated-module";
 ```
 
-The output of the above failures gives the following message:
+The output of the first two above failures gives the following message:
 
-_Module 'deprecated-module' is deprecated. Use 'supported-module' instead._
+> Module 'deprecated-module' is deprecated. Use 'supported-module' instead.
+
+The output of the last above failure gives the following message:
+
+> Module 'another-deprecated-module' is deprecated.
 
 ### Options
+
+Takes one or more objects with the following properties:
 
 | key  | type     | required | description                                                                                        |
 | ---- | -------- | -------- | -------------------------------------------------------------------------------------------------- |

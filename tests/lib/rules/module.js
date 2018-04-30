@@ -50,11 +50,10 @@ ruleTester.run("module", rule, {
     },
     {
       code: "import deprecated from 'deprecated-module'",
-      options: [{ name: "deprecated-module", use: "supported-module" }],
+      options: [{ name: "deprecated-module" }],
       errors: [
         {
-          message:
-            "Module 'deprecated-module' is deprecated. Use 'supported-module' instead.",
+          message: "Module 'deprecated-module' is deprecated.",
           type: "Literal"
         }
       ],

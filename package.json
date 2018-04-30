@@ -2,11 +2,7 @@
   "name": "eslint-plugin-deprecate-import",
   "version": "0.0.0",
   "description": "An ESLint plugin to deprecate import statements",
-  "keywords": [
-    "eslint",
-    "eslintplugin",
-    "eslint-plugin"
-  ],
+  "keywords": ["eslint", "eslintplugin", "eslint-plugin"],
   "author": "findmypast",
   "main": "lib/index.js",
   "scripts": {
@@ -21,7 +17,7 @@
     "mocha": "^5.1.1"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=8.0.0"
   },
   "license": "ISC"
 }

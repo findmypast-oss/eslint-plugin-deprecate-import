@@ -18,18 +18,59 @@ var rule = require("../../../lib/rules/module"),
 var ruleTester = new RuleTester();
 ruleTester.run("module", rule, {
   valid: [
-    // give me some code that won't trigger a warning
+    {
+      code: "import * as supported from 'supported-module'",
+      options: [{ name: "deprecated-module" }],
+      parser: "babel-eslint"
+    },
+    {
+      code: "import supported from 'supported-module'",
+      options: [{ name: "deprecated-module" }],
+      parser: "babel-eslint"
+    },
+    {
+      code: "import { supported } from 'supported-module'",
+      options: [{ name: "deprecated-module" }],
+      parser: "babel-eslint"
+    }
   ],
 
   invalid: [
     {
-      code: "",
+      code: "import * as deprecated from 'deprecated-module'",
+      options: [{ name: "deprecated-module", use: "supported-module" }],
       errors: [
         {
-          message: "Fill me in.",
-          type: "Me too"
+          message:
+            "Module 'deprecated-module' is deprecated. Use 'supported-module' instead.",
+          type: "Literal"
         }
-      ]
+      ],
+      parser: "babel-eslint"
+    },
+    {
+      code: "import deprecated from 'deprecated-module'",
+      options: [{ name: "deprecated-module", use: "supported-module" }],
+      errors: [
+        {
+          message:
+            "Module 'deprecated-module' is deprecated. Use 'supported-module' instead.",
+          type: "Literal"
+        }
+      ],
+      parser: "babel-eslint"
+    },
+    {
+      code: "import { deprecated } from 'deprecated-module'",
+      options: [{ name: "deprecated-module", use: "supported-module" }],
+      errors: [
+        {
+          message:
+            "Module 'deprecated-module' is deprecated. Use 'supported-module' instead.",
+          type: "Literal"
+        }
+      ],
+      parser: "babel-eslint"
     }
   ]
 });

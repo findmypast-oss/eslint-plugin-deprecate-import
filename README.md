@@ -1,5 +1,10 @@
 # eslint-plugin-deprecate-import
 
+[![npm version](https://badge.fury.io/js/eslint-plugin-deprecate-import.svg)](https://www.npmjs.com/package/eslint-plugin-deprecate-import)
+[![build status](https://travis-ci.org/findmypast-oss/eslint-plugin-deprecate-import.svg?branch=master)](https://travis-ci.org/findmypast-oss/eslint-plugin-deprecate-import)
+
+---
+
 An ESLint plugin to deprecate import statements
 
 ## Installation

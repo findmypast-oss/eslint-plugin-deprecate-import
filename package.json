@@ -10,6 +10,7 @@
   },
   "main": "lib/index.js",
   "scripts": {
+    "precommit": "lint-staged",
     "test": "mocha tests --recursive"
   },
   "dependencies": {
@@ -18,11 +19,25 @@
   "devDependencies": {
     "babel-eslint": "^8.2.3",
     "eslint": "~4.19.1",
+    "lint-staged": "^7.2.0",
     "mocha": "^5.1.1",
     "prettier": "^1.13.5"
   },
   "engines": {
     "node": ">=8.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "lint-staged": {
+    "concurrent": false,
+    "linters": {
+      "*.js": [
+        "prettier --single-quote --trailing-comma es5 --write",
+        "git add"
+      ],
+      "*.scss": [
+        "prettier --write",
+        "git add"
+      ]
+    }
+  }
 }

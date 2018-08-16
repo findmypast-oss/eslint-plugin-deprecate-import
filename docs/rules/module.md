@@ -10,14 +10,14 @@ This rule aims to deprecate module imports.
 
 ```js
 {
-    'deprecate-import/module': [
-      'error',
+    "deprecate-import/module": [
+      "error",
       {
-        name: 'deprecated-module',
-        use: 'supported-module',
+        name: "deprecated-module",
+        use: "supported-module",
       },
       {
-        name: 'another-deprecated-module'
+        name: "another-deprecated-module"
       },
     ]
 }

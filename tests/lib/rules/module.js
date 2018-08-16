@@ -6,17 +6,22 @@ ruleTester.run('module', rule, {
   valid: [
     {
       code: "import * as foo from 'supported-module'",
-      options: [{ name: 'deprecated-module' }],
+      options: [{ pattern: 'deprecated-module' }],
       parser: 'babel-eslint',
     },
     {
       code: "import foo from 'supported-module'",
-      options: [{ name: 'deprecated-module' }],
+      options: [{ pattern: 'deprecated-module' }],
       parser: 'babel-eslint',
     },
     {
-      code: "import { foo } from 'node-modules/deprecated-module'",
-      options: [{ name: 'deprecated-module' }],
+      code: "import { foo } from 'supported-module'",
+      options: [{ pattern: 'deprecated-module' }],
+      parser: 'babel-eslint',
+    },
+    {
+      code: "import foo from 'supported-module/supported-function'",
+      options: [{ pattern: '^.*-module$' }],
       parser: 'babel-eslint',
     },
   ],
@@ -24,7 +29,7 @@ ruleTester.run('module', rule, {
   invalid: [
     {
       code: "import * as foo from 'deprecated-module'",
-      options: [{ name: 'deprecated-module', use: 'supported-module' }],
+      options: [{ pattern: 'deprecated-module', use: 'supported-module' }],
       errors: [
         {
           message:
@@ -36,7 +41,7 @@ ruleTester.run('module', rule, {
     },
     {
       code: "import foo from 'deprecated-module'",
-      options: [{ name: 'deprecated-module' }],
+      options: [{ pattern: 'deprecated-module' }],
       errors: [
         {
           message: "Module 'deprecated-module' is deprecated.",
@@ -46,15 +51,66 @@ ruleTester.run('module', rule, {
       parser: 'babel-eslint',
     },
     {
-      code: "import { foo } from 'another-deprecated-module'",
-      options: [
-        { name: 'deprecated-module', use: 'supported-module' },
-        { name: 'another-deprecated-module', use: 'another-supported-module' },
-      ],
+      code: "import { foo } from 'deprecated-module/deprecated-sub-module'",
+      options: [{ pattern: 'deprecated-module.*', use: 'supported-module' }],
       errors: [
         {
           message:
-            "Module 'another-deprecated-module' is deprecated. Use 'another-supported-module' instead.",
+            "Module 'deprecated-module.*' is deprecated. Use 'supported-module' instead.",
+          type: 'Literal',
+        },
+      ],
+      parser: 'babel-eslint',
+    },
+    {
+      code: "import foo from 'deprecated-module'",
+      options: [{ pattern: '^.*-module$' }],
+      errors: [
+        {
+          message: "Module '^.*-module$' is deprecated.",
+          type: 'Literal',
+        },
+      ],
+      parser: 'babel-eslint',
+    },
+    {
+      code: "import foo from 'deprecated-module'",
+      options: [
+        { pattern: '^.*-module$' },
+        { pattern: 'deprecated-module/deprecated-function' },
+      ],
+      errors: [
+        {
+          message: "Module '^.*-module$' is deprecated.",
+          type: 'Literal',
+        },
+      ],
+      parser: 'babel-eslint',
+    },
+    {
+      code: "import foo from 'deprecated-module'",
+      options: [
+        { pattern: 'deprecated-module/deprecated-function' },
+        { pattern: '^.*-module$' },
+      ],
+      errors: [
+        {
+          message: "Module '^.*-module$' is deprecated.",
+          type: 'Literal',
+        },
+      ],
+      parser: 'babel-eslint',
+    },
+    {
+      code: "import foo from 'deprecated-module'",
+      options: [{ pattern: '^deprecated-.*$' }, { pattern: '^.*-module$' }],
+      errors: [
+        {
+          message: "Module '^deprecated-.*$' is deprecated.",
+          type: 'Literal',
+        },
+        {
+          message: "Module '^.*-module$' is deprecated.",
           type: 'Literal',
         },
       ],

@@ -47,7 +47,5 @@ Then configure the rules you want to use under the rules section.
 
 ## Supported Rules
 
-- [module](./docs/rules/module.md): Deprecates npm module imports by exact
-  string match
-- [regex](./docs/rules/regex.md): Deprecates npm module imports via regex string
-  matching
+- [module](./docs/rules/module.md): Deprecates npm module imports via regex
+  pattern matching

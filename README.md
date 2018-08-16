@@ -21,11 +21,13 @@ Next, install `eslint-plugin-deprecate-import`:
 $ npm install eslint-plugin-deprecate-import --save-dev
 ```
 
-**Note:** If you installed ESLint globally (using the `-g` flag) then you must also install `eslint-plugin-deprecate-import` globally.
+**Note:** If you installed ESLint globally (using the `-g` flag) then you must
+also install `eslint-plugin-deprecate-import` globally.
 
 ## Usage
 
-Add `deprecate-import` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+Add `deprecate-import` to the plugins section of your `.eslintrc` configuration
+file. You can omit the `eslint-plugin-` prefix:
 
 ```json
 {
@@ -45,4 +47,7 @@ Then configure the rules you want to use under the rules section.
 
 ## Supported Rules
 
-* [module](./docs/rules/module.md): Deprecates npm module imports
+- [module](./docs/rules/module.md): Deprecates npm module imports by exact
+  string match
+- [regex](./docs/rules/regex.md): Deprecates npm module imports via regex string
+  matching
